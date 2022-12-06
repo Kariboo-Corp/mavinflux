@@ -11,7 +11,7 @@ build/
 # build
 *.o
 *.d
-mavlink_to_mqtt
+mavinflux
 
 # mac
 .DS_Store

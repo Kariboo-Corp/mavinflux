@@ -142,7 +142,7 @@ commands(Autopilot_Interface &api)
 	// copy current messages
 	Mavlink_Messages messages = api.current_messages;
 
-	auto imu_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=imu_db");
+	auto imu_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=imu_db");
 	imu_db->createDatabaseIfNotExists();
 	imu_db->write(influxdb::Point{"temperature"}.addTag("category", "imu").addField("value", messages.highres_imu.temperature));
 	imu_db->write(influxdb::Point{"xacc"}.addTag("category", "imu").addField("value", messages.highres_imu.xacc));
@@ -156,14 +156,14 @@ commands(Autopilot_Interface &api)
 	imu_db->write(influxdb::Point{"zmag"}.addTag("category", "imu").addField("value", messages.highres_imu.zmag));
 	imu_db->write(influxdb::Point{"abs_pressure"}.addTag("category", "imu").addField("value", messages.highres_imu.abs_pressure));
 
-	auto altitude_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=altitude_db");
+	auto altitude_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=altitude_db");
 	altitude_db->createDatabaseIfNotExists();
 	altitude_db->write(influxdb::Point{"altitude_local"}.addTag("category", "altitudes").addField("value", messages.altitude.altitude_local));
 	altitude_db->write(influxdb::Point{"altitude_relative"}.addTag("category", "altitudes").addField("value", messages.altitude.altitude_relative));
 	altitude_db->write(influxdb::Point{"altitude_terrain"}.addTag("category", "altitudes").addField("value", messages.altitude.altitude_terrain));
 	altitude_db->write(influxdb::Point{"bottom_clearance"}.addTag("category", "altitudes").addField("value", messages.altitude.bottom_clearance));
 
-	auto attitude_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=attitude_db");
+	auto attitude_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=attitude_db");
 	attitude_db->createDatabaseIfNotExists();
 	attitude_db->write(influxdb::Point{"roll"}.addTag("category", "attitude").addField("value", messages.attitude.roll));
 	attitude_db->write(influxdb::Point{"pitch"}.addTag("category", "attitude").addField("value", messages.attitude.pitch));
@@ -172,13 +172,13 @@ commands(Autopilot_Interface &api)
 	attitude_db->write(influxdb::Point{"pitchspeed"}.addTag("category", "attitude").addField("value", messages.attitude.pitchspeed));
 	attitude_db->write(influxdb::Point{"yawspeed"}.addTag("category", "attitude").addField("value", messages.attitude.yawspeed));
 
-	auto battery_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=battery_db");
+	auto battery_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=battery_db");
 	battery_db->createDatabaseIfNotExists();
 	battery_db->write(influxdb::Point{"temperature"}.addTag("category", "battery").addField("value", (double)messages.battery_status.temperature));
 	battery_db->write(influxdb::Point{"charge_state"}.addTag("category", "battery").addField("value", (double)messages.battery_status.charge_state));
 	battery_db->write(influxdb::Point{"current_battery"}.addTag("category", "battery").addField("value", (double)messages.battery_status.current_battery));
 
-	// auto estimator_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=estimator_db");
+	// auto estimator_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=estimator_db");
 	// estimator_db->createDatabaseIfNotExists();
 	// estimator_db->write(influxdb::Point{"vel_ratio"}.addTag("category", "estimator").addField("value", (double)messages.estimator_status.vel_ratio));
 	// estimator_db->write(influxdb::Point{"pos_horiz_ratio"}.addTag("category", "estimator").addField("value", (double)messages.estimator_status.pos_horiz_ratio));
@@ -189,7 +189,7 @@ commands(Autopilot_Interface &api)
 	// estimator_db->write(influxdb::Point{"pos_horiz_accuracy"}.addTag("category", "estimator").addField("value", (double)messages.estimator_status.pos_horiz_accuracy));
 	// estimator_db->write(influxdb::Point{"pos_vert_accuracy"}.addTag("category", "estimator").addField("value", (double)messages.estimator_status.pos_vert_accuracy));
 
-	auto odometry_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=odometry_db");
+	auto odometry_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=odometry_db");
 	odometry_db->createDatabaseIfNotExists();
 	odometry_db->write(influxdb::Point{"x"}.addTag("category", "estimator").addField("value", messages.odometry.x));
 	odometry_db->write(influxdb::Point{"y"}.addTag("category", "estimator").addField("value", messages.odometry.y));
@@ -201,7 +201,7 @@ commands(Autopilot_Interface &api)
 	odometry_db->write(influxdb::Point{"pitchspeed"}.addTag("category", "estimator").addField("value", messages.odometry.pitchspeed));
 	odometry_db->write(influxdb::Point{"yawspeed"}.addTag("category", "estimator").addField("value", messages.odometry.yawspeed));
 
-	auto vibration_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=vibration_db");
+	auto vibration_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=vibration_db");
 	vibration_db->createDatabaseIfNotExists();
 	vibration_db->write(influxdb::Point{"vibration_x"}.addTag("category", "estimator").addField("value", messages.vibration.vibration_x));
 	vibration_db->write(influxdb::Point{"vibration_y"}.addTag("category", "estimator").addField("value", messages.vibration.vibration_y));
@@ -210,7 +210,7 @@ commands(Autopilot_Interface &api)
 	vibration_db->write(influxdb::Point{"clipping_1"}.addTag("category", "estimator").addField("value", messages.vibration.clipping_1));
 	vibration_db->write(influxdb::Point{"clipping_2"}.addTag("category", "estimator").addField("value", messages.vibration.clipping_2));
 
-	auto gps_db = influxdb::InfluxDBFactory::Get("http://192.168.1.103:8086?db=gps_db");
+	auto gps_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=gps_db");
 	gps_db->createDatabaseIfNotExists();
 	gps_db->write(influxdb::Point{"origin_altitude"}.addTag("category", "estimator")
 		.addField("altitude", (double)messages.gps_global_origin.altitude)
