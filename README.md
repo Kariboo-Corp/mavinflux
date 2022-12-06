@@ -1,13 +1,19 @@
-MAVLink to MQTT broker
+MAVLink to InfluxDB
 ========================
 
 This program is used to convert MAVLink serial messages to MQTT publisher to create a live view of parameters from the copter.
+
+Dependances
+============
+
+You need to install [InfluxDB-cxx libraries](https://github.com/offa/influxdb-cxx).
+
 
 Building
 ========
 
 ```
-$ cd mavlink_serial_mqtt/
+$ cd mavinflux/
 $ make
 ```
 
@@ -40,8 +46,8 @@ The Pixhawk USB port will show up on a `ttyACM*`, an FTDI cable will show up on 
 Run the example executable on the host shell:
 
 ```bash
-cd c_uart_interface_example/
- ./mavlink_to_mqtt -d /dev/ttyACM0
+cd mavlinflux/
+ ./mavlinflux -d /dev/ttyACM0
 ```
 
 To stop the program, use the key sequence `Ctrl-C`.
@@ -49,6 +55,6 @@ To stop the program, use the key sequence `Ctrl-C`.
 There is also the possibility to connect this example to the simulator using:
 
 ```
-$ ./mavlink_to_mqtt -u 127.0.0.1 -a
+$ ./mavlinflux -u 127.0.0.1 -a
 ```
 The -a argument enables arming, takeoff and landing of the copter. Use this argument with care on a real copter!
