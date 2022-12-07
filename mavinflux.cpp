@@ -174,9 +174,9 @@ commands(Autopilot_Interface &api)
 
 	auto battery_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=battery_db");
 	battery_db->createDatabaseIfNotExists();
-	battery_db->write(influxdb::Point{"temperature"}.addTag("category", "battery").addField("value", messages.battery_status.temperature));
-	battery_db->write(influxdb::Point{"charge_state"}.addTag("category", "battery").addField("value", messages.battery_status.charge_state));
-	battery_db->write(influxdb::Point{"current_battery"}.addTag("category", "battery").addField("value", messages.battery_status.current_battery));
+	battery_db->write(influxdb::Point{"temperature"}.addTag("category", "battery").addField("value", (double)messages.battery_status.temperature));
+	battery_db->write(influxdb::Point{"charge_state"}.addTag("category", "battery").addField("value", (double)messages.battery_status.charge_state));
+	battery_db->write(influxdb::Point{"current_battery"}.addTag("category", "battery").addField("value", (double)messages.battery_status.current_battery));
 
 	// auto estimator_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=estimator_db");
 	// estimator_db->createDatabaseIfNotExists();
