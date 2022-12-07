@@ -213,7 +213,7 @@ commands(Autopilot_Interface &api)
 	auto gps_db = influxdb::InfluxDBFactory::Get("http://localhost:8086?db=gps_db");
 	gps_db->createDatabaseIfNotExists();
 	gps_db->write(influxdb::Point{"origin_altitude"}.addTag("category", "estimator")
-		.addField("altitude", messages.gps_global_origin.altitude)
+		.addField("altitude", (long long int)messages.gps_global_origin.altitude)
 		.addField("longitude", messages.gps_global_origin.longitude)
 		.addField("value", 1)
 		.addField("latitude", messages.gps_global_origin.latitude));
