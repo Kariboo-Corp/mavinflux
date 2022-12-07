@@ -228,7 +228,7 @@ commands(Autopilot_Interface &api)
 		.addField("vy", (double)messages.global_position_int.vy)
 		.addField("vz", (double)messages.global_position_int.vz)
 		.addField("value", 1)
-		.addField("visibles", (double)messages.gps_raw.satellites_visible));
+		.addField("visibles", messages.gps_raw.satellites_visible));
 
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS
