@@ -219,9 +219,14 @@ commands(Autopilot_Interface &api)
 		.addField("latitude", (double)messages.gps_global_origin.latitude));
 	
 	gps_db->write(influxdb::Point{"raw_gps"}.addTag("category", "estimator")
-		.addField("latitude", (double)messages.gps_raw.lat)
-		.addField("longitude", (double)messages.gps_raw.lon)
-		.addField("altitude", (double)messages.gps_raw.alt)
+		.addField("latitude", (double)messages.global_position_int.lat)
+		.addField("longitude", (double)messages.global_position_int.lon)
+		.addField("altitude", (double)messages.global_position_int.alt)
+		.addField("hdg", (double)messages.global_position_int.hdg)
+		.addField("relative_altitude", (double)messages.global_position_int.relative_alt)
+		.addField("vx", (double)messages.global_position_int.vx)
+		.addField("vy", (double)messages.global_position_int.vy)
+		.addField("vz", (double)messages.global_position_int.vz)
 		.addField("value", 1)
 		.addField("visibles", messages.gps_raw.satellites_visible));
 
