@@ -214,9 +214,9 @@ commands(Autopilot_Interface &api)
 	gps_db->createDatabaseIfNotExists();
 	gps_db->write(influxdb::Point{"origin_altitude"}.addTag("category", "estimator")
 		.addField("altitude", (long long int)messages.gps_global_origin.altitude)
-		.addField("longitude", messages.gps_global_origin.longitude)
+		.addField("longitude", (long long int)messages.gps_global_origin.longitude)
 		.addField("value", 1)
-		.addField("latitude", messages.gps_global_origin.latitude));
+		.addField("latitude", (long long int)messages.gps_global_origin.latitude));
 	
 	gps_db->write(influxdb::Point{"raw_gps"}.addTag("category", "estimator")
 		.addField("latitude", messages.global_position_int.lat)
