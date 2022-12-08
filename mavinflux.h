@@ -1,7 +1,9 @@
-// ------------------------------------------------------------------------------
-//   Includes
-// ------------------------------------------------------------------------------
-
+/**
+ * @author Julien Geneste
+ * @brief pushData mavlink messages into an influx DB.
+ * 
+ * 08/12/2022 - v.1
+*/
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
@@ -25,6 +27,7 @@ using namespace std;
 #include "app/autopilot_interface.h"
 #include "app/serial_port.h"
 #include "app/udp_port.h"
+#include "app/influxdb_interface.h"
 
 // ------------------------------------------------------------------------------
 //   Prototypes
@@ -33,7 +36,6 @@ using namespace std;
 int main(int argc, char **argv);
 int top(int argc, char **argv);
 
-void commands(Autopilot_Interface &autopilot_interface);
 void parse_commandline(int argc, char **argv, char *&uart_name, int &baudrate,
 		bool &use_udp, char *&udp_ip, int &udp_port, bool &autotakeoff);
 

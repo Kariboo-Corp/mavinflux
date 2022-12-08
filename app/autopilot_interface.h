@@ -1,3 +1,9 @@
+/**
+ * @author Julien Geneste
+ * @brief pushData mavlink messages into an influx DB.
+ * 
+ * 08/12/2022 - v.1
+*/
 #ifndef AUTOPILOT_INTERFACE_H_
 #define AUTOPILOT_INTERFACE_H_
 

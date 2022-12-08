@@ -1,7 +1,9 @@
-// ------------------------------------------------------------------------------
-//   Includes
-// ------------------------------------------------------------------------------
-
+/**
+ * @author Julien Geneste
+ * @brief pushData mavlink messages into an influx DB.
+ * 
+ * 08/12/2022 - v.1
+*/
 #include "autopilot_interface.h"
 
 
