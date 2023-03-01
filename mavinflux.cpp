@@ -74,7 +74,7 @@ top (int argc, char **argv)
 	 */
 	Autopilot_Interface autopilot_interface(port);
 
-	InfluxDB_Interface influx("192.168.1.199", 8086);
+	InfluxDB_Interface influx("localhost", 8086);
 
 	/*
 	 * Setup interrupt signal handler
