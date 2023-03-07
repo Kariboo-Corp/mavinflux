@@ -1,0 +1,14 @@
+[Unit]
+Description=Mavinflux.
+After=network-online.target
+
+[Service]
+ExecStart=/bin/bash /home/timu/mavinlfux/start.sh
+WorkingDirectory=/home/timu/mavinlfux/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=timu
+
+[Install]
+WantedBy=multi-user.target
