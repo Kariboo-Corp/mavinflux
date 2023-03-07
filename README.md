@@ -8,16 +8,13 @@ Dependances
 
 You need to install [InfluxDB-cxx libraries](https://github.com/offa/influxdb-cxx).
 
-```bash
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/aarch64-linux-gnu && export LD_LIBRARY_PATH
-```
-
 Building
 ========
 
 ```
-$ cd mavinflux/
-$ make
+./install.sh
+cd mavinflux/
+make
 ```
 
 Hardware Setup
@@ -50,7 +47,8 @@ Run the example executable on the host shell:
 
 ```bash
 cd mavlinflux/
- ./mavlinflux -d /dev/ttyACM0
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/aarch64-linux-gnu && export LD_LIBRARY_PATH
+./mavlinflux -d /dev/ttyACM0
 ```
 
 To stop the program, use the key sequence `Ctrl-C`.
@@ -58,6 +56,6 @@ To stop the program, use the key sequence `Ctrl-C`.
 There is also the possibility to connect this example to the simulator using:
 
 ```
-$ ./mavlinflux -u 127.0.0.1 -a
+./mavlinflux -u 127.0.0.1 -a
 ```
 The -a argument enables arming, takeoff and landing of the copter. Use this argument with care on a real copter!
