@@ -3,7 +3,7 @@ Description=Mavinflux.
 After=network-online.target
 
 [Service]
-ExecStart=/bin/bash /home/timu/mavinlfux/start.sh
+ExecStart=/bin/bash /home/timu/mavinflux/start.sh
 WorkingDirectory=/home/timu/mavinlfux/
 StandardOutput=inherit
 StandardError=inherit
