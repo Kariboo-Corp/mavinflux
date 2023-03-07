@@ -17,3 +17,5 @@ sudo make install
 cd ~
 rm -rf ~/influxdb-cxx
 rm -rf ~/cpr-1.10.1 && rm -rf 1.10.1.zip
+sudo cp ${PWD}/mavinflux.service /lib/systemd/system/
+sudo systemctl enable mavinflux.service 
