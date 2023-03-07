@@ -1,5 +1,5 @@
 #! /bin/bash
-sudo apt install curl cmake libcurl4 libcurl4-openssl-dev sudo apt-get install libboost1.74-all-dev influxdb -y
+sudo apt install curl cmake libcurl4 libcurl4-openssl-dev libboost1.74-all-dev influxdb -y
 cd ~
 wget https://github.com/libcpr/cpr/archive/refs/tags/1.10.1.zip
 unzip 1.10.1.zip
